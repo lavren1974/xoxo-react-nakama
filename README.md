@@ -28,6 +28,16 @@ We suggest that you begin by typing:
 
 cd xoxo-react-nakama
 npm start
+
+http://localhost:3000/
+
+yarn add @heroiclabs/nakama-js
+yarn add @heroiclabs/nakama-js-protobuf
+
+
+https://github.com/heroiclabs/xoxo-phaserjs
+https://react.dev/learn/tutorial-tic-tac-toe
+
 ```
 
 
