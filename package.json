@@ -1,6 +1,6 @@
 {
   "name": "xoxo-react-nakama",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@heroiclabs/nakama-js": "^2.6.1",
@@ -12,10 +12,12 @@
     "@types/node": "^20.5.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "@types/uuid": "^9.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "typescript": "^5.1.6",
+    "uuid": "^9.0.0",
     "web-vitals": "^3.4.0"
   },
   "scripts": {

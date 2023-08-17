@@ -38,6 +38,10 @@ yarn add @heroiclabs/nakama-js-protobuf
 https://github.com/heroiclabs/xoxo-phaserjs
 https://react.dev/learn/tutorial-tic-tac-toe
 
+
+yarn add uuid
+yarn add @types/uuid
+
 ```
 
 
