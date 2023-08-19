@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import Square from './Square';
-//import Nakama from "../../utils/nakama";
 import { Client, Session, Socket } from "@heroiclabs/nakama-js";
 import { v4 as uuidv4 } from "uuid";
 
@@ -21,10 +20,6 @@ export default function Board() {
         // https://upmostly.com/tutorials/why-is-my-useeffect-hook-running-twice-in-react
         if (dataFetchedRef.current) return;
         dataFetchedRef.current = true;
-
-        let useSSL = false; // Enable if server is run with an SSL certificate.
-        const client = new Client("defaultkey", "127.0.0.1", "7350", useSSL);
-
 
         const authenticate = async () => {
             let useSSL = false; // Enable if server is run with an SSL certificate.
@@ -60,7 +55,7 @@ export default function Board() {
         console.log("const findMatch");
         const rpcid = "find_match";
         const matches = await getClient!.rpc(getSession!, rpcid, {});
-        console.log(matches);
+        //console.log(matches);
 
 
         if (typeof matches === "object" && matches !== null) {
@@ -106,7 +101,7 @@ export default function Board() {
 
                 if (result.op_code === 1) {
                     console.log("START");
-                    console.log(json);
+                    //console.log(json);
 
                     const safeParsedJson = json as {
                         //payload: {
@@ -140,7 +135,7 @@ export default function Board() {
                     // }
                 } else if (result.op_code === 2) {
                     console.log("result.op_code: ", 2);
-                    console.log(json);
+                    //console.log(json);
 
                     const safeParsedJson = json as {
                         //payload: {
@@ -160,7 +155,7 @@ export default function Board() {
 
                 } else if (result.op_code === 3) {
                     console.log("result.op_code: ", 3);
-                    console.log(json);
+                    //console.log(json);
 
                     const safeParsedJson = json as {
                         //payload: {
@@ -206,16 +201,6 @@ export default function Board() {
             console.log("handleClick ES");
             const nextSquares = squares.slice();
 
-            let charColor: string;
-            if (getUserColor === 1) {
-                charColor = "X";
-
-            } else {
-                charColor = "O";
-            }
-
-
-            //nextSquares[i] = charColor;
             nextSquares[i] = getUserColor;
             setSquares(nextSquares);
             makeMove(i);
@@ -233,19 +218,6 @@ export default function Board() {
         console.log("BeginClick");
         findMatch();
     }
-
-    // function BeginClick2() {
-    //     console.log("BeginClick2");
-    //     //Nakama.authenticate();
-    //     findMatch();
-    //     //Nakama.nakamaListener();
-    //     //setGameColor(Nakama.vvv);
-    // }
-    // function BeginClick3() {
-    //     console.log("BeginClick3");
-    //     //Nakama.authenticate();
-    //     //Nakama.matchData();
-    // }
 
     return (
         <>
@@ -266,9 +238,6 @@ export default function Board() {
             </div>
             <div className="board-row">
                 <div><button className="button-send" onClick={BeginClick}>Вход</button></div>
-
-                {/* <div><button className="button-send" onClick={BeginClick2}>Играть</button></div> */}
-                {/* <div><button className="button-send" onClick={BeginClick3}>Begin3</button></div>  */}
             </div>
             <hr></hr>
             <div className="board-row">

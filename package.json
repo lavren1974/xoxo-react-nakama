@@ -1,6 +1,6 @@
 {
   "name": "xoxo-react-nakama",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": true,
   "dependencies": {
     "@heroiclabs/nakama-js": "^2.6.1",
