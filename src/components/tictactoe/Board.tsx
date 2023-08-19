@@ -102,44 +102,84 @@ export default function Board() {
             //console.log(result.op_code);
 
             if (typeof json === "object" && json !== null) {
-                const safeParsedJson = json as {
-                    //payload: {
-                    board: number[],
-                    deadline: number,
-                    mark: number,
-                    marks: { [key: string]: number },
-                    // }
 
-                };
 
                 if (result.op_code === 1) {
                     console.log("START");
+                    console.log(json);
+
+                    const safeParsedJson = json as {
+                        //payload: {
+                        board: number[],
+                        deadline: number,
+                        mark: number,
+                        marks: { [key: string]: number },
+                        // }
+
+                    };
+
+                    setSquares(safeParsedJson.board);
+
                     //console.log(json);
 
-                    console.log("safeParsedJson.mark: ", safeParsedJson.mark);
-                    console.log("safeParsedJson.board: ", safeParsedJson.board);
-                    console.log("safeParsedJson.marks: ", safeParsedJson.marks);
+                    //console.log("safeParsedJson.mark: ", safeParsedJson.mark);
+                    //console.log("safeParsedJson.board: ", safeParsedJson.board);
+                    //console.log("safeParsedJson.marks: ", safeParsedJson.marks);
                     //console.log(safeParsedJson.marks[1]);
 
                     setUserMove(safeParsedJson.mark);
 
                     if (safeParsedJson.marks[userId!] === 1) {
                         setUserColor(1)
-                        console.log("safeParsedJson.marks[userId!]: ", 1);
+                        // console.log("safeParsedJson.marks[userId!]: ", 1);
 
                     } else {
                         setUserColor(0)
-                        console.log("safeParsedJson.marks[userId!]: ", 0);
+                        // console.log("safeParsedJson.marks[userId!]: ", 0);
                     }
                     // }
                 } else if (result.op_code === 2) {
                     console.log("result.op_code: ", 2);
                     console.log(json);
-                    console.log("safeParsedJson.mark: ", safeParsedJson.mark);
-                    console.log("safeParsedJson.board: ", safeParsedJson.board);
+
+                    const safeParsedJson = json as {
+                        //payload: {
+                        board: number[],
+                        deadline: number,
+                        mark: number,
+                        // marks: { [key: string]: number },
+                        // }
+
+                    };
+                    //console.log(json);
+                    //console.log("safeParsedJson.mark: ", safeParsedJson.mark);
+                    //console.log("safeParsedJson.board: ", safeParsedJson.board);
                     // console.log("safeParsedJson.marks: ", safeParsedJson.marks);
                     setUserMove(safeParsedJson.mark);
                     setSquares(safeParsedJson.board);
+
+                } else if (result.op_code === 3) {
+                    console.log("result.op_code: ", 3);
+                    console.log(json);
+
+                    const safeParsedJson = json as {
+                        //payload: {
+                        board: number[],
+                        nextGameStart: number,
+                        winner: number,
+                        winnerPositions: number[],
+                        // }
+
+                    };
+
+                    //console.log(safeParsedJson.winnerPositions);
+                    setSquares(safeParsedJson.board);
+                    setUserMove(-1);
+
+                } else if (result.op_code === 4) {
+                    console.log("result.op_code: ", 4);
+                } else if (result.op_code === 5) {
+                    console.log("result.op_code: ", 5);
                 }
 
 
@@ -161,7 +201,7 @@ export default function Board() {
     function handleClick(i: number) {
         console.log("handleClick");
 
-        if (getUserMove === getUserColor) {
+        if (getUserMove === getUserColor && squares[i] === null) {
 
             console.log("handleClick ES");
             const nextSquares = squares.slice();
